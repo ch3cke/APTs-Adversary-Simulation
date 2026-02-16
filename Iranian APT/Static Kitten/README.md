@@ -27,6 +27,8 @@ The email carries an attachment named Cybersecurity.doc, which acts as the initi
 
 <img width="584" height="585" alt="imageedit_8_8478180398" src="https://github.com/user-attachments/assets/64db8bb4-e6cb-4ae8-be91-fbd81f7bd6f2" />
 
+## The second stage (Malicious VBA macro)
+
 
 
 
