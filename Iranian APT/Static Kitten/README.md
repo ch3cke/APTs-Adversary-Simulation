@@ -13,3 +13,11 @@ That dropped file is actually an installer that launches the final stage: a Rust
 Throughout, the macro itself is heavily obfuscated to dodge static detection, and the overall chain emphasizes low-noise execution with strong anti-analysis tricks built into the Rust binary. This progression — phishing email → malicious doc → obfuscated macro dropper → RustyWater implant — shows Static Kitten's shift toward more resilient, modular tooling in recent campaigns targeting Middle East  sectors.
 
 ![695fae75028332920172b552_54c74b00](https://github.com/user-attachments/assets/eb4ed208-5e65-425d-9723-51639870c813)
+
+1. Delivery Technique: Create a document file named Cybersecurity.doc, which is used in the next stage to embed and execute a VBA macro loader that extracts and drops the subsequent payload.
+
+2. (Malicious VBA macro): The malicious VBA macro embedded in the document is heavily obfuscated using string concatenation, hex-encoded payloads hidden in UserForm controls, multiple Replace() calls to strip whitespace and line breaks.
+
+3. The payload and evasion: The final payload dropped by the obfuscated VBA macro loader is a Rust-compiled executable (disguised as reddit.exe with a fake Cloudflare icon), known as RustyWater (or linked to Archer RAT/RUSTRIC), featuring strong AV/EDR evasion through process injection, registry based persistence.
+
+4. C2 infrastructure: relies on HTTP protocol for all communications, leveraging the Rust reqwest library with configurable timeouts, connection pooling, and retry mechanisms for reliability. Data payloads are structured as JSON, then encoded in Base64, followed by a final XOR encryption layer to obfuscate traffic and complicate analysis.
