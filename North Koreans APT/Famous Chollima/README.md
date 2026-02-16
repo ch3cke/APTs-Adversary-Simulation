@@ -1,6 +1,6 @@
 # Famous Chollima APT Adversary Simulation
 
-This is a simulation of attack by (Famous Chollima) APT group targeting job seekers to accomplish their goals and wide variety of United States (US) companies, the attack campaign was active early as December 2022, The attack chain starts with attackers invites the victim to participate in an online interview. The attackers likely uses video conferencing or other online collaboration tools for the interview. During the interview, the attackers convinces the victim to download and install an NPM-based package hosted on GitHub. The actors likely presents the package to the victim as software to review or analyze, but it actually contains malicious JavaScript designed to infect the victim’s host with backdoor malware. I relied on paloalto unit42 to figure out the details to make this https://unit42.paloaltonetworks.com/two-campaigns-by-north-korea-bad-actors-target-job-hunters/
+This is a simulation of attack by (Famous Chollima) APT group targeting job seekers to accomplish their goals and wide variety of United States (US) companies, the attack campaign was active early as December 2022, The attack chain starts with attackers invites the victim to participate in an online interview. The attackers likely uses video conferencing or other online collaboration tools for the interview. During the interview, the attackers convinces the victim to download and install an NPM-based package hosted on GitHub. The actors likely presents the package to the victim as software to review or analyze, but it actually contains malicious JavaScript designed to infect the victim’s host with backdoor malware. I relied on paloalto unit42 to figure out the details to make this simulation: https://unit42.paloaltonetworks.com/two-campaigns-by-north-korea-bad-actors-target-job-hunters/
 
 
 ![imageedit_4_8185813077](https://github.com/user-attachments/assets/cba7dd9b-d0e8-4b9c-b47a-7c413d8f91e5)
@@ -131,6 +131,7 @@ It's important to ensure that the payload file has the same name as defined insi
 The final result is the successful establishment of a Command and Control channel. This is achieved by delivering a phishing link that mimics Microsoft login pages using BEAR-C2’s phishing module combined with an obfuscated JavaScript payload. Once executed, the payload initiates a reverse TCP connection to the attacker’s server, encrypted with XOR, allowing secure data exfiltration and remote command execution.
 
 https://github.com/user-attachments/assets/29d59e74-cdf5-464a-bd0d-8a151a9d762e
+
 
 
 
