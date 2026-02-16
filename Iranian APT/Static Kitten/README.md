@@ -19,7 +19,7 @@ Throughout, the macro itself is heavily obfuscated to dodge static detection, an
 
 ## The first stage (delivery technique)
 
-The attack kicks off with a spear-phishing email sent from the compromised info@tmcell address — a legitimate domain tied to TMCell (Altyn Asyr CJSC), Turkmenistan's main mobile telecom provider. The subject line reads "Cybersecurity Guidelines", making it look like an official advisory from a trusted source.
+The attack kicks off with a spear-phishing email sent from the compromised info@tmcell address a legitimate domain tied to TMCell (Altyn Asyr CJSC), Turkmenistan's main mobile telecom provider. The subject line reads "Cybersecurity Guidelines" making it look like an official advisory from a trusted source.
 
 <img width="1600" height="354" alt="695fae75028332920172b555_a74569f3" src="https://github.com/user-attachments/assets/7be7c2f0-76d2-4271-8fb8-b10201859a29" />
 
