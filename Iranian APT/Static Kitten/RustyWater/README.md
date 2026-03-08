@@ -7,7 +7,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 wget https://github.com/electron/rcedit/releases/download/v2.0.0/rcedit
 
 ## Step 3: Run the build script
-# First, make sure the script is executable
+First, make sure the script is executable
 
 chmod +x build.sh
 
