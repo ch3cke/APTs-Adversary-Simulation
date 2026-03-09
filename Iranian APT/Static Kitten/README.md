@@ -27,7 +27,7 @@ The email carries an attachment named Cybersecurity.doc which acts as the initia
 
 <img width="584" height="585" alt="imageedit_8_8478180398" src="https://github.com/user-attachments/assets/64db8bb4-e6cb-4ae8-be91-fbd81f7bd6f2" />
 
-## The second stage (Malicious VBA macro)
+## The second stage (Malicious VBA macro and Hex-encoded)
 
 Sub love_me_____() This subroutine serves as the main controller of the macro managing the entire payload workflow from start to finish. It begins by decoding a hidden file path from a hexadecimal string which was deliberately obfuscated to evade security software and string based detection methods. Once the real path is revealed the code checks if the payload file already exists on the victim's system. Based on this check it makes a strategic decision: if the file is present it executes it immediately if not it calls the download function to fetch the payload from a remote server before running it. This two pronged approach ensures the payload can operate whether the file is already on the system or needs to be delivered.
 
