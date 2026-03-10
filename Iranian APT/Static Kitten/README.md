@@ -51,7 +51,8 @@ Sub AutoOpen: It executes the code automatically when the document is opened.
 
 ## The third stage (RustyWater implant)
 
-RustyWater represents the main payload and the backbone of the entire adversarial operation in Static Kitten group attacks. RustyWater is a Rust compiled executable (disguised as reddit.exe with a fake Cloudflare icon) known as RustyWater (or linked to Archer RAT/RUSTRIC) featuring strong AV/EDR evasion through process injection, registry based persistence.
+RustyWater represents the main payload and the backbone of the entire adversarial operation in Static Kitten group attacks. 
+RustyWater is a Rust compiled executable (disguised as reddit.exe with a fake Cloudflare icon) known as RustyWater (or linked to Archer RAT/RUSTRIC) featuring strong AV/EDR evasion through process injection, registry based persistence.
 
 1. ANTI-ANALYSIS
 Reddit.exe implements a comprehensive 8 layer anti-analysis system that actively probes the execution environment for signs of monitoring, virtualization, or debugging. Each layer acts as a filter ensuring the payload only detonates on a genuine target.
@@ -78,6 +79,10 @@ The soldier then ventures into the Windows Registry a vast database of system se
 
 ![photo_2026-03-10_01-08-35](https://github.com/user-attachments/assets/3b471c57-d790-46c2-8dc0-99115682875d)
 
+Layer 4: RAM Size Analysis
 
+the system reports less than 4GB, the soldier suspects a resource starved sandbox and halts execution. This check is a reliable way to filter out many automated analysis systems.
+
+![photo_2026-03-10_01-12-53](https://github.com/user-attachments/assets/255cc4ec-df18-486b-83e2-6bfb4ed6b7ce)
 
 
