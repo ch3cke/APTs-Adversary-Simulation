@@ -29,23 +29,23 @@ The email carries an attachment named Cybersecurity.doc which acts as the initia
 
 ## The second stage (Malicious VBA macro and Hex-encoded)
 
-Sub love_me_____() This subroutine serves as the main controller of the macro managing the entire payload workflow from start to finish. It begins by decoding a hidden file path from a hexadecimal string which was deliberately obfuscated to evade security software and string based detection methods. Once the real path is revealed the code checks if the payload file already exists on the victim's system. Based on this check it makes a strategic decision: if the file is present it executes it immediately if not it calls the download function to fetch the payload from a remote server before running it. This two pronged approach ensures the payload can operate whether the file is already on the system or needs to be delivered.
+Sub love_me_____(): This subroutine serves as the main controller of the macro managing the entire payload workflow from start to finish. It begins by decoding a hidden file path from a hexadecimal string which was deliberately obfuscated to evade security software and string based detection methods. Once the real path is revealed the code checks if the payload file already exists on the victim's system. Based on this check it makes a strategic decision: if the file is present it executes it immediately if not it calls the download function to fetch the payload from a remote server before running it. This two pronged approach ensures the payload can operate whether the file is already on the system or needs to be delivered.
 
 ![photo_2026-03-09_16-52-35](https://github.com/user-attachments/assets/9fdd2efc-9726-42d0-aa0f-195c093a804c)
 
 must specify the file path that is being checked and executed. For example you can use the path C:\ProgramData\CertificationKit.ini where CertificationKit.ini is the payload file. You can use https://www.hexhero.com/converters/text-to-hex to convert the path to HEX format for hiding it in the code.
 
-Sub DownloadAndRun This is the download manager of the payload responsible for reaching out to the internet and pulling down the file. It begins by decoding another hidden hexadecimal string that contains the actual URL where the payload is hosted. Using Windows HTTP services it establishes a connection to the remote server and downloads the file in binary format. Once the download completes successfully the code saves the file to the location specified earlier and immediately triggers its execution ensuring the payload becomes active on the system without any delay.
+Sub DownloadAndRun: This is the download manager of the payload responsible for reaching out to the internet and pulling down the file. It begins by decoding another hidden hexadecimal string that contains the actual URL where the payload is hosted. Using Windows HTTP services it establishes a connection to the remote server and downloads the file in binary format. Once the download completes successfully the code saves the file to the location specified earlier and immediately triggers its execution ensuring the payload becomes active on the system without any delay.
 
 ![photo_2026-03-09_16-54-29](https://github.com/user-attachments/assets/fb5f0856-399a-4ab3-9fe1-f939c54de155)
 
 must put the download link for the payload file where CertificationKit.ini is the payload file. You must convert this link to HEX format just like we did with the file path.
 
-Function DecodeHex Serves as the decoder ring for the entire operation. This clever obfuscation technique helps hide true intentions by keeping file paths and download URLs encrypted until the very moment they're needed.
+Function DecodeHex: Serves as the decoder ring for the entire operation. This clever obfuscation technique helps hide true intentions by keeping file paths and download URLs encrypted until the very moment they're needed.
 
-Sub ExecuteFile Is the execution engine that ensures the payload file runs on the system. It employs multiple methods to launch the file first using the Shell command with hidden window settings then falling back to Windows Script Host for redundancy. Both approaches run silently in the background leaving no visual indicators for the victim to notice.
+Sub ExecuteFile: Is the execution engine that ensures the payload file runs on the system. It employs multiple methods to launch the file first using the Shell command with hidden window settings then falling back to Windows Script Host for redundancy. Both approaches run silently in the background leaving no visual indicators for the victim to notice.
 
-Sub AutoOpen It executes the code automatically when the document is opened
+Sub AutoOpen: It executes the code automatically when the document is opened.
 
 ![photo_2026-03-09_16-56-38](https://github.com/user-attachments/assets/7b8a5018-9bd9-4166-aab3-689b29914d12)
 
