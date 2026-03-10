@@ -49,3 +49,35 @@ Sub AutoOpen: It executes the code automatically when the document is opened.
 
 ![photo_2026-03-09_16-56-38](https://github.com/user-attachments/assets/7b8a5018-9bd9-4166-aab3-689b29914d12)
 
+## The third stage (RustyWater implant)
+
+RustyWater represents the main payload and the backbone of the entire adversarial operation in Static Kitten group attacks. RustyWater is a Rust compiled executable (disguised as reddit.exe with a fake Cloudflare icon) known as RustyWater (or linked to Archer RAT/RUSTRIC) featuring strong AV/EDR evasion through process injection, registry based persistence.
+
+1. ANTI-ANALYSIS
+Reddit.exe implements a comprehensive 8 layer anti-analysis system that actively probes the execution environment for signs of monitoring, virtualization, or debugging. Each layer acts as a filter ensuring the payload only detonates on a genuine target.
+
+Layer 1: CPU Core Count Verification
+
+Initially the RustyWater soldier looks around to gauge the power of the machine it finds itself on. It asks itself: How many cores does this processor have? Analysis environments, like sandboxes, are typically resource limited and often have two cores or fewer. If the soldier finds the machine is this weak it immediately decides the environment is unsafe and vanishes without a trace wasting all the analysts' efforts.
+
+In the provided image a section of the Reddit.exe program's code illustrates this mechanism. The arrow points to the line checking the "cpu count" where the program examines the number of processor cores. If the count is two or less it means the surrounding environment is suspicious and execution is halted immediately.
+
+![photo_2026-03-10_01-05-14](https://github.com/user-attachments/assets/8726b61b-992e-4399-9b74-69a0869ec3d6)
+
+Layer 2: Virtual Machine Artifact Detection
+
+Not convinced by the CPU check alone the soldier digs deeper. It knows that virtual machines leave behind specific digital footprints like a trail of breadcrumbs. It scans the list of running processes looking for familiar names associated with virtualization software: vmtoolsd.exe (VMware) vboxtray.exe (VirtualBox) and xenservice.exe (Xen). It also checks for the existence of specific driver files on disk such as vmmouse.sys or VBoxGuest.sys.
+
+The logic is simple: if a machine is running VMware tools  it is likely a VM. If it is a VM it is likely an analysis environment. If it is an analysis environment the soldier aborts the mission.
+
+![photo_2026-03-10_01-06-44](https://github.com/user-attachments/assets/0c3e2fac-fe1a-41d9-b784-ba505ccad32f)
+
+Layer 3: Analysis Tool Registry Scanning
+
+The soldier then ventures into the Windows Registry a vast database of system settings. It knows that security analysts often leave their tools behind and these tools leave artifacts. It searches for registry keys associated with debugging and monitoring software like Wireshark, Process Hacker, OllyDbg, and IDA Pro. The presence of any of these keys confirms the environment is hostile triggering an immediate shutdown.
+
+![photo_2026-03-10_01-08-35](https://github.com/user-attachments/assets/3b471c57-d790-46c2-8dc0-99115682875d)
+
+
+
+
