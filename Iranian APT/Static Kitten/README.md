@@ -87,4 +87,10 @@ the system reports less than 4GB, the soldier suspects a resource starved sandbo
 
 ![photo_2026-03-10_01-12-53](https://github.com/user-attachments/assets/255cc4ec-df18-486b-83e2-6bfb4ed6b7ce)
 
+Layer 5: Debugger Detection
+
+The soldier now checks its immediate surroundings. It uses a simple but effective Windows API call—IsDebuggerPresent—to determine if it is being run under the control of a debugger. A debugger is like a microscope; if one is present, it means someone is watching the soldier's every instruction. The soldier will not perform under such surveillance.
+
+![photo_2026-03-10_01-21-47](https://github.com/user-attachments/assets/55b527e6-2355-4c23-a6f3-56a13a882705)
+
 
