@@ -225,7 +225,7 @@ The client authenticates with a predefined ID and executes commands received fro
 
 ![photo_2026-03-10_13-39-56](https://github.com/user-attachments/assets/7de9a4c7-f553-47e6-87d0-fe6f3b508576)
 
-- Pivoting
+- Pivoting technique
 
 VBA Macro Code Reuse: The macro code extracted from Cybersecurity.doc exhibits striking similarities to previously documented Muddy Water campaigns. Specifically, the WriteHexToFile and love_me_ function patterns, including the distinctive use of hex encoded payload embedding within UserForm controls.
 
