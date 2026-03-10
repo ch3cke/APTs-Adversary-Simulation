@@ -71,13 +71,15 @@ Not convinced by the CPU check alone the soldier digs deeper. It knows that virt
 
 The logic is simple: if a machine is running VMware tools  it is likely a VM. If it is a VM it is likely an analysis environment. If it is an analysis environment the soldier aborts the mission.
 
-![photo_2026-03-10_01-06-44](https://github.com/user-attachments/assets/0c3e2fac-fe1a-41d9-b784-ba505ccad32f)
+![photo_2026-03-10_01-15-15](https://github.com/user-attachments/assets/db8ed5a6-9c15-4d6e-8d59-e20197ebab88)
+
 
 Layer 3: Analysis Tool Registry Scanning
 
 The soldier then ventures into the Windows Registry a vast database of system settings. It knows that security analysts often leave their tools behind and these tools leave artifacts. It searches for registry keys associated with debugging and monitoring software like Wireshark, Process Hacker, OllyDbg, and IDA Pro. The presence of any of these keys confirms the environment is hostile triggering an immediate shutdown.
 
-![photo_2026-03-10_01-08-35](https://github.com/user-attachments/assets/3b471c57-d790-46c2-8dc0-99115682875d)
+![photo_2026-03-10_01-16-59](https://github.com/user-attachments/assets/fc2c14b2-b1ec-4cc2-9f06-6bbc1b064330)
+
 
 Layer 4: RAM Size Analysis
 
