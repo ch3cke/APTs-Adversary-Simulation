@@ -118,11 +118,11 @@ Once the anti analysis checks pass, Reddit.exe establishes robust registry persi
 
 The implant cleverly disguises itself as a legitimate Windows Update component, making it less suspicious to casual observers. The persistence mechanism includes:
 
-      - Error handling for permission issues (fallback to HKCU if HKLM access fails)
+- Error handling for permission issues (fallback to HKCU if HKLM access fails)
 
-      - Path validation to ensure the executable exists at the specified location
+- Path validation to ensure the executable exists at the specified location
 
-      - Startup verification to confirm the registry entry was successfully created
+- Startup verification to confirm the registry entry was successfully created
 
 This ensures that every time the user logs in Reddit.exe automatically executes with their privileges.
 
