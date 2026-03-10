@@ -93,4 +93,23 @@ The soldier now checks its immediate surroundings. It uses a simple but effectiv
 
 ![photo_2026-03-10_01-21-47](https://github.com/user-attachments/assets/55b527e6-2355-4c23-a6f3-56a13a882705)
 
+Layer 6: System Uptime Check
+
+Time itself becomes a factor. The soldier checks how long the system has been running since the last boot. Sandboxes and analysis environments are often freshly booted, right before a sample is executed. If the system uptime is less than 15 minutes, the soldier flags it as a suspicious, short lived environment and retreats.
+
+![photo_2026-03-10_01-25-21](https://github.com/user-attachments/assets/9c14c6e5-10d6-4636-9cc5-701978957635)
+
+Layer 7: Username Analysis
+
+The soldier then checks the identity of the user. It compares the current username against a blacklist of common analysis accounts: "sandbox", "virus", "malware", "analysis", "vmware", and "test". These usernames are frequently used in isolated analysis environments. If the username matches any entry on the list, the mission is immediately aborted.
+
+![photo_2026-03-10_01-27-33](https://github.com/user-attachments/assets/e8c8fb6f-42e9-44ac-9cb1-828a8521beb9)
+
+
+
+
+
+
+
+
 
