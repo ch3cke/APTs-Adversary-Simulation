@@ -41,17 +41,11 @@ Sub DownloadAndRun This is the download manager of the payload responsible for r
 
 must put the download link for the payload file where CertificationKit.ini is the payload file. You must convert this link to HEX format just like we did with the file path.
 
-1.Function DecodeHex
+Function DecodeHex Serves as the decoder ring for the entire operation. This clever obfuscation technique helps hide true intentions by keeping file paths and download URLs encrypted until the very moment they're needed.
 
-Serves as the decoder ring for the entire operation. This clever obfuscation technique helps hide true intentions by keeping file paths and download URLs encrypted until the very moment they're needed.
+Sub ExecuteFile Is the execution engine that ensures the payload file runs on the system. It employs multiple methods to launch the file first using the Shell command with hidden window settings then falling back to Windows Script Host for redundancy. Both approaches run silently in the background leaving no visual indicators for the victim to notice.
 
-2.Sub ExecuteFile
-
-Is the execution engine that ensures the payload file runs on the system. It employs multiple methods to launch the file first using the Shell command with hidden window settings then falling back to Windows Script Host for redundancy. Both approaches run silently in the background leaving no visual indicators for the victim to notice.
-
-3.Sub AutoOpen
-
-It executes the code automatically when the document is opened
+Sub AutoOpen It executes the code automatically when the document is opened
 
 ![photo_2026-03-09_16-56-38](https://github.com/user-attachments/assets/7b8a5018-9bd9-4166-aab3-689b29914d12)
 
