@@ -111,9 +111,108 @@ Finally the soldier looks at the machine's network card. It checks the MAC addre
 
 ![photo_2026-03-10_01-34-39](https://github.com/user-attachments/assets/02531d47-501e-41a0-9133-1ea4154acf9d)
 
+2.REGISTRY PERSISTENCE
+Once the anti analysis checks pass, Reddit.exe establishes robust registry persistence to ensure it survives system reboots:
+
+<img width="998" height="43" alt="Screenshot From 2026-03-10 07-49-31" src="https://github.com/user-attachments/assets/4b13c18b-78c3-4083-b0bc-9fac6ee0dcb6" />
+
+The implant cleverly disguises itself as a legitimate Windows Update component, making it less suspicious to casual observers. The persistence mechanism includes:
+
+      - Error handling for permission issues (fallback to HKCU if HKLM access fails)
+
+      - Path validation to ensure the executable exists at the specified location
+
+      - Startup verification to confirm the registry entry was successfully created
+
+This ensures that every time the user logs in Reddit.exe automatically executes with their privileges.
+
+![photo_2026-03-10_13-02-39](https://github.com/user-attachments/assets/16ba36b1-8c20-4fba-8a55-70532ea416bd)
+
+3. PROCESS INJECTION
+
+The final and most sophisticated capability is process injection into explorer.exe, allowing the implant to execute shellcode within a trusted system process.
+
+Reddit.exe implements a classic but effective remote thread injection technique:
+
+- Process Discovery: Scans running processes to locate explorer.exe and obtain its Process ID (PID).
+
+- Handle Acquisition: Opens the target process with PROCESS_ALL_ACCESS privileges.
+
+- Memory Allocation: Uses VirtualAllocEx to allocate RWX memory (Read, Write, Execute) within explorer.exe's address space.
+
+- Shellcode Transfer: Writes the malicious payload using WriteProcessMemory.
+
+- Execution: Creates a remote thread via CreateRemoteThread that points to the injected shellcode.
+
+This technique allows the attackers to hide their malicious code inside a trusted system process, making detection significantly more difficult for security solutions.
+
+![photo_2026-03-10_13-03-23](https://github.com/user-attachments/assets/957b2184-4396-42ef-a539-26f36bf97f49)
+
+Why Attackers Use explorer.exe for Process Injection?
+
+the attackers deliberately chose to target explorer.exe for injecting their malicious shellcode. This choice was not random—it was based on strategic advantages:
+
+- Legitimate system process - Its presence is normal and doesn't raise alarms.
+
+- Always running - Guaranteed availability on all Windows systems.
+
+- User context - Inherits the current user's privileges.
+
+- Persistence - Survives even if the main malicious process is terminated.
+  
+![photo_2026-03-10_13-04-19](https://github.com/user-attachments/assets/c45b572d-e5a6-4af0-bf20-084aee8231b4)
+
+Put an HTTP payload: Encrypt it using XOR encryption to avoid detection over the network.
 
 
+Modifying File Metadata to Evade Detection
 
+After building the reddit.exe payload, we must modify its metadata to make it appear as a legitimate, non-suspicious program. Security solutions and EDR tools examine these metadata fields, so changing them is essential for evasion.
+
+
+What Metadata Do Target?
+
+File Version: The version number of the file
+Product Version: The version number of the product
+File Description: What the file describes itself as (appears in Task Manager)
+Product Name: The name of the product
+Company Name: The name of the developing company
+LegalCopyright: Copyright information
+OriginalFilename: The original name of the file
+
+The tool used: rcedit
+
+To perform these modifications, we use a lightweight, free tool called rcedit, officially available on GitHub.
+link: https://github.com/electron/rcedit/releases/download/v2.0.0/rcedit-x64.exe
+
+![photo_2026-03-10_13-08-33](https://github.com/user-attachments/assets/a7507be8-10fb-4db7-a8bf-ef0ba858e359)
+
+
+Dropper : CertificationKit.ini
+
+I observed that the attackers do not execute reddit.exe directly on the target system. Instead they rely on an intermediary program known as CertificationKit.ini (Dropper) which carries the encrypted payload decrypts it at runtime and executes it on the victim is machine.
+
+and that the dropper was written in Rust. Although it disguises itself as a seemingly harmless configuration file (CertificationKit.ini) it is in reality a compiled binary responsible for deploying and executing the main payload on the target system.
+
+This technique provides several advantages:
+
+1. Evasion: The actual payload remains encrypted making it more difficult for antivirus and security tools to detect it.
+
+2. Analysis Bypass: Even if the dropper is discovered or analyzed the main payload remains encrypted and protected.
+
+3. Multi Stage Execution: The attack operates in multiple stages which complicates the analysis process and slows down incident response for security teams.
+
+![photo_2026-03-10_13-09-19](https://github.com/user-attachments/assets/490fb362-fefc-4bac-95e2-0d1e2e03f5fa)
+
+Payload Encryption: The main payload (reddit.exe) is stored in the ENCRYPTED_PAYLOAD section and encrypted using the XOR key defined in the dropper (XOR_KEY). This ensures that the payload remains protected until runtime.
+
+Target Path: The dropper writes the decrypted payload to the location specified in the dropper configuration (TARGET_PATH). This path must be correctly set to the intended directory on the victim is system.
+
+Runtime Decryption: Upon execution, the dropper decrypts the payload using the XOR key and deploys it as CertificationKit.ini at the target location.
+
+This setup allows the attackers to maintain stealth, evade detection, and ensure the payload is only accessible when executed on the victim is system.
+
+![photo_2026-03-10_13-10-59](https://github.com/user-attachments/assets/f318f3ae-e8b4-41b4-b62e-9daee6fe09e2)
 
 
 
