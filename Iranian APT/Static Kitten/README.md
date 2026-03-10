@@ -105,7 +105,11 @@ The soldier then checks the identity of the user. It compares the current userna
 
 ![photo_2026-03-10_01-27-33](https://github.com/user-attachments/assets/e8c8fb6f-42e9-44ac-9cb1-828a8521beb9)
 
+Layer 8: MAC Address and Hardware Profile Verification
 
+Finally the soldier looks at the machine's network card. It checks the MAC address against known vendor prefixes used by virtualization software. A MAC address starting with 00:0C:29 belongs to VMware, while 08:00:27 belongs to VirtualBox. It also scans hardware profiles for strings like "VMware" or "VirtualBox" in the system's description. If any of these are found, the soldier knows it is inside a virtual machine and pulls the plug.
+
+![photo_2026-03-10_01-34-39](https://github.com/user-attachments/assets/02531d47-501e-41a0-9133-1ea4154acf9d)
 
 
 
