@@ -17,7 +17,7 @@ Throughout, the macro itself is heavily obfuscated to dodge static detection, an
 
 4. C2 infrastructure: relies on HTTP protocol for all communications, leveraging the Rust reqwest library with configurable timeouts, connection pooling, and retry mechanisms for reliability. Data payloads are structured as JSON, then encoded in Base64 followed by a final XOR encryption layer to obfuscate traffic and complicate analysis.
 
-## The first stage (delivery technique)
+## The first stage Kill Chain (delivery technique)
 
 The attack kicks off with a spear-phishing email sent from the compromised info@tmcell address a legitimate domain tied to TMCell (Altyn Asyr CJSC), Turkmenistan's main mobile telecom provider. The subject line reads "Cybersecurity Guidelines" making it look like an official advisory from a trusted source.
 
@@ -224,5 +224,14 @@ This payload establishes an HTTP connection to a remote server for command execu
 The client authenticates with a predefined ID and executes commands received from the server supporting both CMD and PowerShell commands. Output from executed commands is XOR encrypted and sent back to the server in JSON format. Data is also Base64 encoded for safe transmission.
 
 ![photo_2026-03-10_13-39-56](https://github.com/user-attachments/assets/7de9a4c7-f553-47e6-87d0-fe6f3b508576)
+
+- Pivoting
+
+VBA Macro Code Reuse: The macro code extracted from Cybersecurity.doc exhibits striking similarities to previously documented Muddy Water campaigns. Specifically, the WriteHexToFile and love_me_ function patterns, including the distinctive use of hex encoded payload embedding within UserForm controls.
+
+The campaign analysed in this report shares significant overlap with another report.Similar TTPs can be observed in that chain too where the initial email was impersonating the L.M. Group, a legitimate Israeli HR company.
+
+<img width="1484" height="710" alt="695fae75028332920172b570_9e14499d" src="https://github.com/user-attachments/assets/5a66af77-1496-476c-9e87-893a355694da" />
+
 
 
