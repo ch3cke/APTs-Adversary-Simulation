@@ -49,7 +49,7 @@ Sub AutoOpen: It executes the code automatically when the document is opened.
 
 ![photo_2026-03-09_16-56-38](https://github.com/user-attachments/assets/7b8a5018-9bd9-4166-aab3-689b29914d12)
 
-## The third stage (RustyWater implant)
+## The third stage (RustyWater implanting technique)
 
 RustyWater represents the main payload and the backbone of the entire adversarial operation in Static Kitten group attacks. 
 RustyWater is a Rust compiled executable (disguised as reddit.exe with a fake Cloudflare icon) known as RustyWater (or linked to Archer RAT/RUSTRIC) featuring strong AV/EDR evasion through process injection, registry based persistence.
@@ -188,7 +188,7 @@ link: https://github.com/electron/rcedit/releases/download/v2.0.0/rcedit-x64.exe
 ![photo_2026-03-10_13-08-33](https://github.com/user-attachments/assets/a7507be8-10fb-4db7-a8bf-ef0ba858e359)
 
 
-Dropper : CertificationKit.ini
+- Dropper : CertificationKit.ini
 
 I observed that the attackers do not execute reddit.exe directly on the target system. Instead they rely on an intermediary program known as CertificationKit.ini (Dropper) which carries the encrypted payload decrypts it at runtime and executes it on the victim is machine.
 
@@ -208,11 +208,21 @@ Payload Encryption: The main payload (reddit.exe) is stored in the ENCRYPTED_PAY
 
 Target Path: The dropper writes the decrypted payload to the location specified in the dropper configuration (TARGET_PATH). This path must be correctly set to the intended directory on the victim is system.
 
-Runtime Decryption: Upon execution, the dropper decrypts the payload using the XOR key and deploys it as CertificationKit.ini at the target location.
+Runtime Decryption: Upon execution the dropper decrypts the payload using the XOR key and deploys it as CertificationKit.ini at the target location.
 
 This setup allows the attackers to maintain stealth, evade detection, and ensure the payload is only accessible when executed on the victim is system.
 
 ![photo_2026-03-10_13-10-59](https://github.com/user-attachments/assets/f318f3ae-e8b4-41b4-b62e-9daee6fe09e2)
 
+## Final result: (Actual payload connect to BEAR-C2 server)
+
+This payload establishes an HTTP connection to a remote server for command execution. It communicates using JSON formatted messages, with all data encrypted using XOR key.
+
+![photo_2026-03-10_13-26-39](https://github.com/user-attachments/assets/6a2205fd-d6db-485e-af40-caded41cea67)
+
+
+The client authenticates with a predefined ID and executes commands received from the server supporting both CMD and PowerShell commands. Output from executed commands is XOR encrypted and sent back to the server in JSON format. Data is also Base64 encoded for safe transmission.
+
+![photo_2026-03-10_13-39-56](https://github.com/user-attachments/assets/7de9a4c7-f553-47e6-87d0-fe6f3b508576)
 
 
